@@ -1,49 +1,54 @@
-﻿namespace ConsoleApp1
+﻿namespace ConsoleApp
 {
     public class Program
     {
         static void Main(string[] args)
         {
-            MathOperations math = new MathOperations();
-            int firstN = int.Parse(Console.ReadLine());
-            string Op = Console.ReadLine();
-            if (Op == "!" || Op == "@")
-            {
-                switch (Op)
-                {
-                        case "!":
-                        Console.WriteLine("="); Console.WriteLine(MathOperations.Factor(firstN));
-                        break;
+            int result;
 
-                        case "@":
-                        Console.WriteLine("="); Console.WriteLine(MathOperations.Raidcal(firstN));
-                        break;
-                }
-            }
-            else
-            {
-            int secondN = int.Parse(Console.ReadLine());
-            Console.WriteLine("=");
+            int firstNumber = GetNumber();
 
-            switch (Op)
-                {
+            string op = GetOperator();
+
+            int secondNumber = GetNumber();
+
+            MathOperation mathOperation = new(firstNumber, secondNumber);
+
+            switch (op)
+            {
                 case "+":
-                    Console.WriteLine(MathOperations.Sum(firstN, secondN));
+                    result = mathOperation.Sum();
+                    Console.WriteLine(result);
                     break;
 
                 case "-":
-                    Console.WriteLine(MathOperations.Minus(firstN, secondN));
+                    result = mathOperation.Minus();
+                    Console.WriteLine(result);
                     break;
 
                 case "*":
-                    Console.WriteLine(MathOperations.Multiply(firstN, secondN));
+                    result = mathOperation.Multiply();
+                    Console.WriteLine(result);
                     break;
 
                 case "/":
-                    Console.WriteLine(MathOperations.Division(firstN, secondN));
+                    result = mathOperation.Division();
+                    Console.WriteLine(result);
                     break;
-                }
             }
+
+        }
+
+        private static string GetOperator()
+        {
+            return Console.ReadLine();
+        }
+
+        private static int GetNumber()
+        {
+            return int.Parse(Console.ReadLine());
         }
     }
+
+
 }
